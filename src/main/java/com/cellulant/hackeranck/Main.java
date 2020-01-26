@@ -265,11 +265,6 @@ public class Main {
             }
 
         }
-        //        int[] c = {0, 0, 0, 0, 1, 0};
-        //        int [] c = {0 ,0 ,1 ,0 ,0 ,1 ,0};
-        //        int[] c = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0};
-        //        int results = Main.jumpingOnClouds(c);
-        //        System.out.println(results);
 
         return clouds_hoped;
 
@@ -427,28 +422,7 @@ public class Main {
         String[] keys = {"MESSAGE", "TXNSTATUS", "EXTREFNUM"};
         String[] values = new String[0];
         String tag = "";
-        //Mcell Moz
-        // String parentTag = "member";
-        //keys to extract from the payload
-        // String[] keys = {"SubscriberBalanceBefore", "TUMTimeStamp", "RequestSubDealerID"};
-        /*this should be empty when we don't have key value pair eg.
-         <member>
-         <name>SubscriberBalanceBefore</name>
-         <value>    
-         <string>-0.01</string>
-         </value>*/
-        //String[] values = {"name", "value"};
-        //String tag = "";
-        //Telecel Zimbambwe
-        // String parentTag = "getTopupReturn";
-        // String[] keys = {"ns1:agentCode", "ns24:clienttype"};
-        // String[] values = new String[0];
-        // String tag = "";
-        //Mobipay Namibia
-//        String parentTag = "PaymentResult";
-//        String[] keys = {"ResponseCode", "Description"};
-//        String[] values = new String[0];
-//        String tag = "";
+
         System.out.println("processing response");
 
         try {
@@ -497,40 +471,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        String payload = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:epar=\"http://sclinsmsvm01p/wsdls/Surfline/EpartnerDataPurchase.wsdl\">\n" +
-//"  <soapenv:Header/>\n" +
-//"  <soapenv:Body>\n" +
-//"     <epar:EpartnerDataPurchaseRequest>\n" +
-//"        <CC_Calling_Party_Id>539381234812</CC_Calling_Party_Id>\n" +
-//"        <CHANNEL>Cellulant</CHANNEL>\n" +
-//"        <TRANSACTION_ID>12362744</TRANSACTION_ID>\n" +
-//"        <Recipient_Number>233255000102</Recipient_Number>\n" +
-//"        <RECEPIENT_WALLET_TYPE>Primary</RECEPIENT_WALLET_TYPE>\n" +
-//"        <AMOUNT>1.5gbp</AMOUNT>\n" +
-//"        <Request_type>Data</Request_type>\n" +
-//"     </epar:EpartnerDataPurchaseRequest>\n" +
-//"  </soapenv:Body>\n" +
-//"</soapenv:Envelope>";
-//        
-//        HashMap<String,String> headers = new HashMap<>();
-//        headers.put("Accept-Encoding", "gzip,deflate"); //(3);
-//        headers.put("Content-Type", "text/xml;charset=UTF-8");
-//        headers.put("Content-length", "394");
-//        headers.put("Connection", "Keep-Alive");
-//        headers.put("Host", "172.25.38.43:2222");
-//        headers.put("User-Agent","Apache-HttpClient/4.1.1 (java 1.5)");
-//        headers.put("Authorization","Basic cellulant:cellulant1234");
-//        
-//        String url = "http://3.122.24.11:9000/surfline/";
-//        
-//        
-//        System.out.println(Samples.updatedPostMethod(url, payload, headers).toString());
-//        int[] a1 = {1, 3, 6, 4, 1, 2};
-//        int[] a2 = {1, 2, 3};
-//        int[] a3 = {-1, -3};
-//        int x = 1000570070;
-//        String y = "";
-//        int[] A = {3, 5, 6, 3, 3, 5, 6, 6, 3};
         int[] a = {1, 2, 3, 4, 5};
         int n = 5;
         int d = 2;
