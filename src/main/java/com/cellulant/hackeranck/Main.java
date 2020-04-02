@@ -5,25 +5,14 @@
  */
 package com.cellulant.hackeranck;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.*;
-import java.util.stream.IntStream;
-//import javax.swing.text.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import com.jovixe.samples.Samples;
 import java.math.BigInteger;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -33,21 +22,20 @@ public class Main {
 
     static int formingMagicSquare(int[][] s) {
         for (int[] row : s) {
-            int[] available_digits = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            int[] available_digits = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             Arrays.sort(row);
             int row_sum = row[0] + row[1] + row[2];
 
             if (row_sum == 15) {
                 for (int i_row = 0; i_row < row.length; ++row_sum) {
-                    IntStream.range(0, available_digits.length)
-                            .filter(i -> i != i_row)
-                            .map(i -> available_digits[i]).toArray();
+                    IntStream.range(0, available_digits.length).filter(i -> i != i_row).map(i -> available_digits[i])
+                            .toArray();
                 }
 
-//                pop the values 
+                // pop the values
             } else {
-//                make sure the sumation of larget and extra is less than 9
-//                addition amount and pop
+                // make sure the sumation of larget and extra is less than 9
+                // addition amount and pop
             }
 
         }
@@ -110,7 +98,7 @@ public class Main {
             sum = Long.sum(sum, item);
         }
         return sum;
-//        return ar.stream().mapToInt(Long::intValue).sum();
+        // return ar.stream().mapToInt(Long::intValue).sum();
     }
 
     static String repeat(int times, String with) {
@@ -162,7 +150,7 @@ public class Main {
 
     static int sockMerchant(int n, int[] ar) {
         Arrays.sort(ar);
-//        int mini_count = 0;
+        // int mini_count = 0;
         int main_count = 0;
         n -= 1;
         for (int x = 0; x < n; x++) {
@@ -286,7 +274,7 @@ public class Main {
 
         if (remainder > 0) {
             char[] rem = Arrays.copyOfRange(sc, 0, (int) remainder);
-//            System.out.println("Test : "+rem.toString());
+            // System.out.println("Test : "+rem.toString());
             for (char ch : rem) {
                 if (ch == 'a') {
                     a_sub_count++;
@@ -338,7 +326,7 @@ public class Main {
     }
 
     public static int Solution3(String s) {
-//        int base_ten = Integer.parseInt(s, 2);
+        // int base_ten = Integer.parseInt(s, 2);
         long base_ten = new BigInteger(s, 2).longValue();
         int count = 0;
         while (base_ten != 0) {
@@ -388,12 +376,12 @@ public class Main {
 
         while (c > 0) {
             q = n % d;
-//            System.out.println(q);
+            // System.out.println(q);
             System.out.println(c);
             if (q == 0) {
                 n -= d;
                 int[] sub = Arrays.copyOfRange(a, n, n + d);
-//                int[] sub = IntStream.range(n, n+d).map(i -> a[i]).toArray();
+                // int[] sub = IntStream.range(n, n+d).map(i -> a[i]).toArray();
                 result += Arrays.toString(sub);
                 System.out.println(result);
                 n -= d;
@@ -401,7 +389,7 @@ public class Main {
             } else {
                 n -= q;
                 int[] sub = Arrays.copyOfRange(a, n, n + q);
-//                int[] sub = IntStream.range(n, n+q).map(i -> a[i]).toArray();
+                // int[] sub = IntStream.range(n, n+q).map(i -> a[i]).toArray();
                 result += Arrays.toString(sub);
                 System.out.println(result);
                 c--;
@@ -413,68 +401,55 @@ public class Main {
 
     }
 
-    public HashMap<String, String> processMerchantResponse(String response) {
-
-        HashMap<String, String> resp = new HashMap<>();
-
-        // AirtelMw
-        String parentTag = "COMMAND";
-        String[] keys = {"MESSAGE", "TXNSTATUS", "EXTREFNUM"};
-        String[] values = new String[0];
-        String tag = "";
-
-        System.out.println("processing response");
-
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource is = new InputSource();
-            is.setCharacterStream(new StringReader(response));
-
-            Document doc = db.parse(is);
-            NodeList nodes = doc.getElementsByTagName(parentTag);
-
-            System.out.println("node length >>>>" + nodes.getLength());
-
-            //Iterate through the tags.
-            for (int i = 0; i < nodes.getLength(); i++) {
-                //check if the are other members on the root tag
-                Node nNode = nodes.item(i);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) nodes.item(i);
-                    for (String key : keys) {
-                        if (values.length == 0) {
-                            tag = element.getElementsByTagName(key).item(0).getTextContent()
-                                    == null ? " " : element.getElementsByTagName(key).item(0).getTextContent();
-                        } else {
-                            for (String value : values) {
-                                tag = element.getElementsByTagName(value).item(0).getTextContent()
-                                        == null ? " " : element.getElementsByTagName(value).item(0).getTextContent();
-                            }
-                        }
-                        System.out.println("key >>>>" + key);
-                        System.out.println("tag >>>>" + tag);
-                        resp.put(key, tag);
-                    }
-                }
+    static int compare(int[] arr, int[] arr2) {
+        int sum1 = Arrays.stream(arr).sum();
+        int sum2 = Arrays.stream(arr2).sum();
+        
+        Arrays.asList(arr2);
+        if (sum1 != sum2) {
+            if (sum1 < sum2) {
+                arr2 = Arrays.copyOfRange(arr2, 1, arr2.length);
+            } else {
+                arr = Arrays.copyOfRange(arr, 1, arr.length);
             }
+            return compare(arr, arr2);
 
-            System.out.println("response is " + resp.toString());
-
-        } catch (ParserConfigurationException | SAXException | IOException | DOMException e) {
-            String msg = e.getCause() == null ? e.getCause().toString()
-                    : " " + "exception caught : " + e.getMessage();
-            System.out.println("exception caught " + e.getMessage());
+        } else {
+            return sum1;
         }
-        return resp;
+
+    }
+
+    static int equalStacks(int[] h1, int[] h2, int[] h3) {
+
+        /*
+         * Write your code here.
+         */
+
+
+
+        int compare1 = compare(h1, h2);
+        int compare2 = compare(h2, h3);
+        if(compare1 != compare2){
+            if(compare1 > compare2){
+
+            }else{
+
+            }
+            return 0;
+        }else{
+            return compare1;
+        }
+
     }
 
     public static void main(String[] args) {
 
-        int[] a = {1, 2, 3, 4, 5};
-        int n = 5;
-        int d = 2;
-        Main.LeftRotation(a, d, n);
+        int[] h1 = { 3, 2, 1, 1, 1 };
+        int[] h2 = { 4, 3, 2 };
+        int[] h3 = { 1, 1, 4, 1 };
+        int result = Main.equalStacks(h1, h2, h3);
+        System.out.println(result);
 
     }
 }
